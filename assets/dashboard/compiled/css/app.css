@@ -8683,6 +8683,10 @@ header nav {
     --bs-border-opacity: 1
 }
 
+.w-10 {
+    width: 10% !important
+}
+
 .w-15 {
     width: 15% !important
 }

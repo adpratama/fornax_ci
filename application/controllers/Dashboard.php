@@ -34,8 +34,8 @@ class Dashboard extends CI_Controller
 			'out_cgk' => $this->M_Dashboard->out_cgk($filter_yearmonth),
 			'in_hlp' => $this->M_Dashboard->in_hlp($filter_yearmonth),
 			'out_hlp' => $this->M_Dashboard->out_hlp($filter_yearmonth),
-			'menu' => $this->M_Setting->get_menus(),
-			'login_menu' => $this->M_User->getUserMenu($this->session->userdata('username')),
+			// 'menu' => $this->M_Setting->get_menus(),
+			// 'login_menu' => $this->M_User->getUserMenu($this->session->userdata('username')),
 		];
 
 		$this->load->view('pages/dashboard/index', $data);

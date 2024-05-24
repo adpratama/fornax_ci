@@ -3,10 +3,15 @@
         <div class="sidebar-menu">
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
-                <?php foreach ($menu as $m) :
+                <?php
+                $menu = $this->M_Setting->get_menus();
+                $login_menu = $this->M_User->getUserMenu($this->session->userdata('username'));
+
+                foreach ($menu as $m) :
                     $submenus = $this->M_Setting->get_submenus($m->Id);
-                    $isActive = ($this->uri->segment(1) == $m->url) ? 'active' : '';
+                    $isActive = ($this->uri->segment(1) == $m->controller) ? 'active' : '';
                     $hasChildClass = ($m->has_child == '1') ? 'has-sub' : '';
+                    // $url = explode('/', $m->url);
 
                     if (in_array($m->Id, json_decode($login_menu['access_menu'], true))) : ?>
                         <li class="sidebar-item <?= $hasChildClass ?> <?= $isActive ?>">

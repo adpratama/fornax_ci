@@ -473,4 +473,14 @@ class IntegrasiAP2 extends CI_Controller
         $this->db->where('uid', $uid_invoice);
         $this->db->update('integrasi_ap2');
     }
+
+    public function rekap()
+    {
+        $data = [
+            'title' => 'Integrasi AP2',
+            'pages' => 'pages/integrasi_ap2/v_upload',
+        ];
+
+        $this->load->view('pages/dashboard/index', $data);
+    }
 }

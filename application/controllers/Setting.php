@@ -19,15 +19,6 @@ class Setting extends CI_Controller
         // if ($this->session->userdata('user_role') != 1) {
         // }
     }
-    public function index()
-    {
-        $data = [
-            'title' => 'Setting',
-            'pages' => 'pages/setting/v_setting',
-        ];
-
-        $this->load->view('index', $data);
-    }
 
     public function menu()
     {
@@ -147,5 +138,53 @@ class Setting extends CI_Controller
         $this->session->set_flashdata('message_name', 'The user account has been activated successfully.');
 
         redirect($_SERVER['HTTP_REFERER']);
+    }
+
+    public function addNewMenu()
+    {
+        // echo '<pre>';
+        // print_r($_POST);
+        // echo '</pre>';
+        $data_parent = [
+            'nama_menu' => trim($this->input->post('nama_menu')),
+            'url' => trim($this->input->post('url')),
+            'has_child' => trim($this->input->post('has_child')),
+            'controller' => trim($this->input->post('url')),
+        ];
+
+        $menu_childs = $this->input->post('menu_child');
+        $url_childs = $this->input->post('url_child');
+
+        $id_parent = $this->M_Setting->addMenu($data_parent);
+
+        $child_data = [];
+
+        if (is_array($menu_childs)) {
+            for ($i = 0; $i < count($menu_childs); $i++) {
+                $menu_child = $menu_childs[$i];
+                $url_child = $url_childs[$i];
+
+                $child_data[] = [
+                    'nama_menu' => trim($menu_child),
+                    'url' => trim($url_child),
+                    'parent_id' => $id_parent,
+                ];
+            }
+
+            // echo '<pre>';
+            // print_r($child_data);
+            // echo '</pre>';
+            // exit;
+
+            if (!empty($child_data)) {
+                $insert = $this->M_Setting->addChildMenu($child_data);
+
+                if ($insert) {
+                    $this->session->set_flashdata('message_name', 'New menu has been successfully added.');
+                    // After that you need to used redirect function instead of load view such as 
+                    redirect("setting/menu");
+                }
+            }
+        }
     }
 }

@@ -58,6 +58,7 @@ $(document).ready(function () {
 			}
 		});
 	});
+
 	$(".btn-confirm").on("click", function (e) {
 		e.preventDefault();
 		const form = $(this).parents("form");
@@ -71,7 +72,19 @@ $(document).ready(function () {
 			cancelButtonColor: "#d33",
 			confirmButtonText: "Yes, confirm!",
 		}).then((result) => {
-			if (result.isConfirmed) form.submit();
+			if (result.isConfirmed) {
+				$(".btn-confirm").attr("disabled", true);
+				$(".btn-confirm").html("Processing...");
+				form.submit();
+				Swal.fire({
+					title: "Loading...",
+					timerProgressBar: true,
+					allowOutsideClick: false,
+					didOpen: () => {
+						Swal.showLoading();
+					},
+				});
+			}
 		});
 	});
 

@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="<?= base_url('setting/update_access/' . $this->uri->segment(3)) ?>" method="post">
+                    <form action="<?= base_url('setting/update_access/' . $this->uri->segment(3)) ?>" method="post" id="form-input">
                         <div class="row">
                             <?php
                             foreach ($menu as $m) :
@@ -129,4 +129,33 @@
             });
         });
     });
+
+    // $(document).ready(function() {
+    //     $("#form-input").on("submit", function(e) {
+    //         e.preventDefault(); // Mencegah form submit default
+
+    //         const form = $(this).parents("form");
+    //         Swal.fire({
+    //             title: "Are you sure?",
+    //             text: "You won't be able to revert this!",
+    //             icon: "warning",
+    //             showCancelButton: true,
+    //             confirmButtonColor: "#3085d6",
+    //             cancelButtonColor: "#d33",
+    //             confirmButtonText: "Yes, confirm!",
+    //         }).then((result) => {
+    //             if (result.isConfirmed) {
+    //                 Swal.fire({
+    //                     title: "Sending...",
+    //                     timerProgressBar: true,
+    //                     allowOutsideClick: false,
+    //                     didOpen: () => {
+    //                         Swal.showLoading();
+    //                     },
+    //                 });
+    //                 form.submit();
+    //             }
+    //         });
+    //     });
+    // });
 </script>

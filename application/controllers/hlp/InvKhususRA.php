@@ -17,11 +17,13 @@ class InvKhususRA extends CI_Controller
         }
     }
 
-    public function index()
+    public function billing()
     {
         $data = [
             'title' => 'Inv Khusus RA LJA',
             'pages' => 'pages/dashboard/invkhusus_ralja/v_table',
+            'menu' => $this->M_Setting->get_menus(),
+            'login_menu' => $this->M_User->getUserMenu($this->session->userdata('username')),
         ];
 
         $this->load->view('pages/dashboard/index', $data);
