@@ -22,11 +22,10 @@
                             <?php if ($m->has_child == '1') : ?>
                                 <ul class="submenu">
                                     <?php foreach ($submenus as $s) :
-                                        $urlParts = explode("/", $s->url);
                                         if (in_array($s->Id, json_decode($login_menu['access_sub_menu'], true))) : ?>
-                                            <li class="submenu-item <?= ($this->uri->segment(2) == $urlParts[1]) ? 'active' : '' ?>">
+                                            <li class="submenu-item <?= ($this->uri->uri_string() == $s->url) ? 'active' : '' ?>">
                                                 <a href="<?= base_url($s->url) ?>" class="submenu-link">
-                                                    <?= ($this->uri->segment(2) == $urlParts[1]) ? '<i class="bi bi-dash"></i>' : '' ?> <?= $s->nama_menu ?>
+                                                    <?= ($this->uri->uri_string() == $s->url) ? '<i class="bi bi-dash"></i>' : '' ?> <?= $s->nama_menu ?>
                                                 </a>
                                             </li>
                                     <?php endif;

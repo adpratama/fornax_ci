@@ -6,7 +6,7 @@ class InvKhususRA extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(['M_Auth', 'M_Invoice', 'M_KategoriHarga', 'M_Agen', 'M_Smu']);
+        $this->load->model(['M_Auth', 'M_Invoice', 'M_KategoriHarga', 'M_Customer', 'M_Smu']);
 
         if (!$this->session->userdata('is_logged_in')) {
             $this->session->set_flashdata('message_name', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -74,7 +74,7 @@ class InvKhususRA extends CI_Controller
     {
         $data = [
             'title' => 'Inv Khusus RA LJA',
-            'agents' => $this->M_Agen->invKhususRa(),
+            'agents' => $this->M_Customer->invKhususRa(),
             'kategoriHarga' => $this->M_KategoriHarga->hargaInvKhususRa(),
             'pages' => 'pages/dashboard/invkhusus_ralja/v_create',
         ];

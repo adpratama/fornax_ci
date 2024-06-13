@@ -23540,6 +23540,10 @@ body .bi:before,
     height: 20px
 }
 
+.logo img {
+    content: url('../../../img/logo_fornax.svg');
+}
+
 .layout-horizontal .header-top-right {
     display: flex;
     gap: 1rem;

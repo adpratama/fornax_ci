@@ -10350,6 +10350,10 @@ html[data-bs-theme=dark] .layout-horizontal .header-top .logo img {
     height: 20px
 }
 
+html[data-bs-theme=dark] .logo img {
+    content: url('../../../img/logo_fornax_dark.svg');
+}
+
 html[data-bs-theme=dark] .layout-horizontal .header-top-right {
     display: flex;
     gap: 1rem;
